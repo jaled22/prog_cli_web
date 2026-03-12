@@ -1,79 +1,153 @@
-# Universidad Politécnica de Madrid - Curso 2025-26
+# Desarrollado por la asignatura Programación de clientes ligeros
+# Universidad Politécnica de Madrid
+# Curso 2024-25
+
+import conf
+
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from urllib.parse import urlparse
+import urllib
+
+import logging as lg
 import datetime
 import socket
 
-hostName = "localhost"
-serverPort = 8080
-
-asignatura = "Programaci&oacute;n clientes (Web) Ligeros 2025-26"
-piePagina = f"{asignatura}. UPM ({datetime.datetime.now().strftime('%c')} en {socket.gethostname()})"
+piePagina = conf.ASIGNATURA + "Universidad Polit&eacute;cnica de Madrid ("+datetime.datetime.now().strftime("%c")+" en "+socket.gethostname()+")"
 
 class MyServer(BaseHTTPRequestHandler):
 
-    def obtener_mimetype(self, fichero):
-        if fichero.endswith(".css"): return "text/css"
-        if fichero.endswith(".gif"): return "image/gif"
-        if fichero.endswith(".png"): return "image/png"
-        if fichero.endswith(".jpg") or fichero.endswith(".jpeg"): return "image/jpeg"
-        if fichero.endswith(".js"): return "application/javascript"
-        if fichero.endswith(".ico"): return "image/x-ico"
-        return "text/html"
+    def do_GET(self):
 
-    def procesar_y_responder(self, metodo):
-        print(f"PETICIÓN RECIBIDA ({metodo}): {self.requestline}")
-
-
-        # Si es POST, leemos y mostramos el cuerpo
-        #if metodo == "POST":
-            #content_length = int(self.headers.get('Content-Length', 0))
-            #post_data = self.rfile.read(content_length)
-            #print(f"CUERPO (PAYLOAD) RECIBIDO:\n{post_data.decode('utf-8', errors='ignore')}\n")
-
-        # 2. DETERMINAR EL ARCHIVO Y MIME TYPE
-        parsed_path = urlparse(self.path)
-        fichero = "index.html" if self.path == "/" else parsed_path.path[1:]
-        mimetype = self.obtener_mimetype(fichero)
-
+        lg.debug("New request: "+self.path+" from: "+self.client_address[0])
         try:
-            with open(fichero, 'rb') as f:
-                contenido = f.read()
-                codigo_resp = 200
-            print(f"FICHERO ENCONTRADO: {fichero}")
-        except (FileNotFoundError, IOError):
-            contenido = bytes(self.pagina_default(), "utf-8")
-            codigo_resp = 404
-            mimetype = "text/html"
+            parsed_path = urllib.parse.urlparse(self.path)
+
+            sendReply = True
+            petición = self.path[1:]
+            if (petición == ""):
+
+                petición="index.html"
+
+            elif (petición == "favicon.ico"):
+                pass
 
 
-        # 3. PREPARAR Y MOSTRAR CABECERAS EMITIDAS
-        print(f"RESPUESTA HTTP ENVIADA ({codigo_resp}):")
+            elif ("reservar_puesto" in petición):
+                query_params = urllib.parse.parse_qs(parsed_path.query)
+                self.send_headers(200, "text/plain")
 
-        self.send_response(codigo_resp)
-        self.send_header("Content-type", mimetype)
-        self.send_header("Content-Length", str(len(contenido)))
-        self.send_header("Server-Software", "Python/UPM-Didactic")
+                self.wfile.write(bytes(self.datos_formulario(query_params), "utf-8"))
+
+                sendReply = False
+
+
+            if petición.endswith(".html"):
+                mimetype='text/html'
+            elif petición.endswith(".jpg"):
+                mimetype='image/jpg'
+            elif petición.endswith(".gif"):
+                mimetype='image/gif'
+            elif petición.endswith(".js"):
+                mimetype='application/javascript'
+            elif petición.endswith(".css"):
+                mimetype='text/css'
+            elif petición.endswith(".ico"):
+                mimetype='image/x-ico'
+            elif petición.endswith(".png"):
+                mimetype='image/png'
+            elif petición.endswith(".bmp"):
+                mimetype='image/bmp'
+
+            else:
+
+                petición = parsed_path.path[1:]
+
+
+
+
+            if sendReply:
+
+
+                self.send_headers(200, mimetype)
+                templateFile=open(petición,'rb')
+                string=templateFile.read()
+                self.wfile.write(string)
+
+        except ( FileNotFoundError):
+            lg.warning(f"Se solicita una página o fichero '{self.path}' inexistente.")
+            self.wfile.write(bytes(self.pagina_default(), "utf-8"))
+        except (IOError):
+            lg.warning(f"Se ha producido un error indefinido")
+            self.wfile.write(bytes(self.pagina_default(), "utf-8"))
+
+    def send_headers(self, status, content_type):
+        #    """Send out the group of headers for a successful request"""
+        # Send HTTP headers
+
+        self.send_response(status, "OK")
+        self.send_header('Content-type', content_type)
+        self.send_header('Transfer-Encoding', 'chunked')
+        self.send_header('Connection', 'close')
         self.end_headers()
 
-
-        # 4. ENVIAR EL CUERPO
-        self.wfile.write(contenido)
-
-    def do_GET(self):
-        self.procesar_y_responder("GET")
-
-    def do_POST(self):
-        self.procesar_y_responder("POST")
-
     def pagina_default(self):
-        return f"<html><body><h1>Error 404</h1><p>{piePagina}</p></body></html>"
+        pagina = "<html><head>"
+        pagina += "<title>"+conf.ASIGNATURA + " WEB Server script</title>"
+        pagina += "<meta charset=\"utf-8\" />"
+        pagina += "<meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">"
+        pagina += "</head>"
+
+
+        pagina += "<body>"
+        pagina += "<h1>"+conf.ASIGNATURA+"</h1>"
+        pagina +="<p><b>ERROR</b> No se ha encontrado la página.</p>"
+        pagina += "<p id=\"fecha\">"+piePagina + "</p>"
+        pagina += "<p align=\"center\"><a href=\"index.html\">Volver al ménu</a>"
+        pagina += "</body></html>"
+        return pagina
+
+
+    def datos_formulario(self, query_params):
+        # Extraemos los datos usando los 'name' del formulario HTML
+        empleado = query_params.get("empleado", [""])[0]
+        departamento = query_params.get("departamento", ["No especificado"])[0]
+        tipo_puesto = query_params.get("tipo", ["No especificado"])[0]
+        planta = query_params.get("planta", ["No especificada"])[0]
+        
+        # 'extra' es un checkbox, puede devolver una lista de valores
+        extras_lista = query_params.get("extra", ["Ninguno"])
+        extras = ", ".join(extras_lista)
+        
+        notas = query_params.get("notas", ["Sin observaciones"])[0]
+
+        # Construimos la respuesta visual
+        aux = f"""
+            <div style="text-align: left; padding: 10px; border-left: 4px solid #004080;">
+                <p><strong>Confirmación de Solicitud:</strong></p>
+                <p><b>Empleado:</b> {empleado}</p>
+                <p><b>Departamento:</b> {departamento}</p>
+                <p><b>Ubicación:</b> Planta {planta} ({tipo_puesto.capitalize()})</p>
+                <p><b>Equipamiento adicional:</b> {extras}</p>
+                <p><b>Notas de mantenimiento:</b> {notas}</p>
+            </div>
+        """
+        return aux
+
+
+
+
+
 
 if __name__ == "__main__":
-    webServer = HTTPServer((hostName, serverPort), MyServer)
-    print(f"Servidor UPM activo en http://{hostName}:{serverPort}")
+
+    lg.info("Starting web server...")
+
+    webServer = HTTPServer((conf.HOSTNAME, conf.SERVER_PORT), MyServer)
+
+    lg.info("Server started http://%s:%s" % (conf.HOSTNAME, conf.SERVER_PORT))
     try:
         webServer.serve_forever()
     except KeyboardInterrupt:
-        webServer.server_close()
-        print("\nServidor apagado.")
+        lg.error("Keyboard interruption. Stopping web server...")
+
+    webServer.server_close()
+    lg.info ("Server stopped.")
