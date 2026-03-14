@@ -1,54 +1,50 @@
-body {
-    font-family: sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 20px;
-    background-color: #f4f4f4;
+#cabecera{
+    width:800px;
+    height:150px;
+    background:#ffffff;
+    
+
+    margin:0 auto;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:10px;
 }
 
-.container {
-    max-width: 800px;
-    margin: auto;
-    background: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
+#logo{
+    max-width:120px;
+    max-height:120px;
+} 
 
-h1 {
-    color: #003b7e;
-    border-bottom: 2px solid #003b7e;
-    padding-bottom: 10px;
-}
-
-.menu-list {
-    list-style: none;
-    padding: 0;
-}
-
-.menu-item {
-    background: #e9ecef;
-    margin: 10px 0;
-    padding: 15px;
-    border-left: 5px solid #003b7e;
-    transition: 0.3s;
-}
-
-.menu-item:hover {
-    background: #dee2e6;
-    transform: translateX(10px);
-}
-
-.menu-item a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    display: block;
-}
-
-.footer {
-    margin-top: 30px;
-    font-size: 0.8em;
-    color: #666;
+#cabecera p{
+    color:red;
+    font-size:18px;
+    font-family:Verdana, sans-serif;
+    margin:5px;
     text-align: center;
+}
+
+#cabecera p::first-letter{
+    color:blue;
+    font-weight:bold;
+    font-size:20px;
+}
+
+.universidad{
+    font-family:Calibri, sans-serif;
+    font-size:24px;
+    margin-top:5px;
+}
+
+.universidad span{
+    color:red;
+    font-weight:bold;
+    font-size:35px;
+    vertical-align:middle;
+}
+
+#texto_cabecera{
+    line-height:1.2;
 }
