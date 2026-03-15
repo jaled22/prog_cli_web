@@ -1,0 +1,14 @@
+#contenido{
+    width:800px;
+    margin:0 auto;
+    display:flex;
+}
+
+#menu{
+    width:200px;
+}
+
+#principal{
+    width:600px;
+    padding:10px;
+}

@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/css/contenido.css">
     <link rel="stylesheet" type="text/css" href="/css/menu.css">
     <link rel="stylesheet" type="text/css" href="/css/pie.css">
+    <link rel="stylesheet" type="text/css" href="/css/principal.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 
@@ -28,21 +29,135 @@
         <img id="logo" src="https://cdn-icons-png.flaticon.com/512/3222/3222640.png" alt="Residential Building"> 
     </div>
 
-    <!-- Menu -->
-    <div id="menu">
-        
-    </div>
-
     <!-- Contenido -->
-    <div id="principal">
-       
+    <div id="contenido">
+        <!-- Menu -->
+        <div id="menu">
+            <a href="#" onclick="CambiarCapas('datos_empleado')">
+                Identificación de usuario
+            </a>
+
+            <a href="#" onclick="CambiarCapas('configuracion')">
+                Configuración
+            </a>
+
+            <a href="#" onclick="CambiarCapas('equipamiento')">
+                Equipamiento
+            </a>
+
+            <a href="#" onclick="CambiarCapas('comentarios')">
+                Comentarios
+            </a>  
+        </div>
+
+        <!-- Principal -->
+        <div id="principal">
+            <form id="formulario-gestion" action="/reservar_puesto">
+                <div id="datos_empleado">
+
+                    <h2 class="titulo_seccion">Identificación de usuario</h2>
+
+                    <p>
+                    Nombre empleado:
+                    <input type="text" name="empleado">
+                    </p>
+
+                    <p>
+                    Departamento:
+                    <select name="departamento">
+                    <option value="IT">IT</option>
+                    <option value="RRHH">RRHH</option>
+                    <option value="Marketing">Marketing</option>
+                    </select>
+                    </p>
+
+                    </div>
+
+
+                    <div id="configuracion" style="display:none">
+
+                    <h2 class="titulo_seccion">Configuración</h2>
+
+                    <p>
+                    Tipo de puesto:
+                    <select name="tipo">
+                    <option value="escritorio">Escritorio</option>
+                    <option value="portatil">Portátil</option>
+                    </select>
+                    </p>
+
+                    <p>
+                    Planta:
+                    <select name="planta">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    </select>
+                    </p>
+
+                    </div>
+
+
+                    <div id="equipamiento" style="display:none">
+
+                    <h2 class="titulo_seccion">Equipamiento</h2>
+
+                    <p>
+                    <label>
+                    <input type="checkbox" name="extra" value="teclado">
+                    Teclado
+                    </label>
+                    </p>
+
+                    <p>
+                    <label>
+                    <input type="checkbox" name="extra" value="raton">
+                    Ratón
+                    </label>
+                    </p>
+
+                    <p>
+                    <label>
+                    <input type="checkbox" name="extra" value="monitor">
+                    Monitor
+                    </label>
+                    </p>
+
+                    </div>
+
+
+                    <div id="comentarios" style="display:none">
+
+                    <h2 class="titulo_seccion">Comentarios</h2>
+
+                    <p>
+                    <textarea name="notas" rows="4" cols="40"></textarea>
+                    </p>
+
+                    </div>
+
+
+                    <div class="botones">
+
+                    <button type="button" class="boton_confirmar" onclick="enviar(event)">
+                    Confirmar reserva
+                    </button>
+
+                    <button type="reset" class="boton_cancelar">
+                    Cancelar
+                    </button>
+
+                </div>
+            </form>
+        </div>
     </div>
 
     <!-- Pie -->
     <div id="pie">
         
     </div>
-
-
+    <script src="js/gestion_menu.js"></script>
+    <script src="js/ajax.js"></script>
+    <script src="js/campos_vacios.js"></script>
 </body>
 </html>

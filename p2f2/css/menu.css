@@ -1,0 +1,21 @@
+#menu{
+    width:200px;
+    padding:10px;
+}
+
+#menu a{
+    display:block;
+    color:#004080;
+    text-decoration:none;
+    margin:8px 0;
+    font-family:sans-serif;
+}
+
+#menu a:visited{
+    color:#555;
+}
+
+#menu a:hover{
+    color:#007bff;
+    margin-left:5px;
+}

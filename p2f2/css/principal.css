@@ -1,0 +1,44 @@
+#principal{
+    padding: 6px;    
+}
+
+.titulo_seccion{
+    background:#2c3e50;
+    color:white;
+    text-transform:uppercase;
+    padding:12px;
+}
+
+#principal p{
+    font-family:sans-serif;
+    color:#333;
+    font-size:1.05em;
+}
+
+#principal input,
+#principal select{
+    padding:6px;
+    border:1px solid #ccc;
+}
+
+#principal button{
+    background:#f8f9fa;
+    padding:10px 20px;
+    margin:10px;
+}
+
+.boton_confirmar{
+    background:#3498db;
+    color:white;
+    border:none;
+}
+
+.boton_cancelar{
+    background:#95a5a6;
+    color:white;
+    border:none;
+}
+
+.botones{
+    text-align:center;
+}
