@@ -33,19 +33,19 @@
     <div id="contenido">
         <!-- Menu -->
         <div id="menu">
-            <a href="#" onclick="CambiarCapas('datos_empleado')">
+            <a href="#" onclick="cambiarCapas('datos_empleado')">
                 Identificación de usuario
             </a>
 
-            <a href="#" onclick="CambiarCapas('configuracion')">
-                Configuración
+            <a href="#" onclick="cambiarCapas('reserva_puesto')">
+                Reserva de puesto
             </a>
 
-            <a href="#" onclick="CambiarCapas('equipamiento')">
+            <a href="#" onclick="cambiarCapas('equipamiento')">
                 Equipamiento
             </a>
 
-            <a href="#" onclick="CambiarCapas('comentarios')">
+            <a href="#" onclick="cambiarCapas('notas_adicionales')">
                 Comentarios
             </a>  
         </div>
@@ -55,91 +55,90 @@
             <form id="formulario-gestion" action="/reservar_puesto">
                 <div id="datos_empleado">
 
-                    <h2 class="titulo_seccion">Identificación de usuario</h2>
+                    <h2 class="titulo_seccion">IDENTIFICACIÓN DE USUARIO</h2>
 
                     <p>
-                    Nombre empleado:
-                    <input type="text" name="empleado">
+                        Nombre del empleado:
+                        <input type="text" name="empleado">
+                        </p>
+
+                    <p>
+                        Departamento:
+                        <select name="departamento">
+                            <option value="" selected disabled>Seleccione un departamento ▼</option>
+                            <option value="IT">IT</option>
+                            <option value="RRHH">RRHH</option>
+                            <option value="Marketing">Marketing</option>
+                        </select>
+                    </p>
+
+                </div>
+
+                <div id="reserva_puesto" style="display:none">
+
+                    <h2 class="titulo_seccion">CONFIGURACIÓN DEL PUESTO</h2>
+
+                    <p>
+                        Tipo de espacio:
+                        <label><input type="radio" name="tipo" value="escritorio"> Escritorio fijo</label>
+                        <label><input type="radio" name="tipo" value="despacho"> Despacho privado</label>
+                        <label><input type="radio" name="tipo" value="sala"> Sala de juntas</label>
                     </p>
 
                     <p>
-                    Departamento:
-                    <select name="departamento">
-                    <option value="IT">IT</option>
-                    <option value="RRHH">RRHH</option>
-                    <option value="Marketing">Marketing</option>
-                    </select>
+                        Planta:
+                        <select name="planta">
+                            <option value="" selected disabled>Seleccione una planta ▼</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
                     </p>
 
-                    </div>
+                </div>
 
+                <div id="equipamiento" style="display:none">
 
-                    <div id="configuracion" style="display:none">
+                    <h2 class="titulo_seccion">PERIFÉRICOS REQUERIDOS</h2>
 
-                    <h2 class="titulo_seccion">Configuración</h2>
-
-                    <p>
-                    Tipo de puesto:
-                    <select name="tipo">
-                    <option value="escritorio">Escritorio</option>
-                    <option value="portatil">Portátil</option>
-                    </select>
-                    </p>
+                    <p>Marque lo que necesite del puesto:</p>
 
                     <p>
-                    Planta:
-                    <select name="planta">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    </select>
-                    </p>
-
-                    </div>
-
-
-                    <div id="equipamiento" style="display:none">
-
-                    <h2 class="titulo_seccion">Equipamiento</h2>
-
-                    <p>
-                    <label>
-                    <input type="checkbox" name="extra" value="teclado">
-                    Teclado
-                    </label>
+                        <label>
+                        <input type="checkbox" name="extra" value="teclado">
+                        Teclado
+                        </label>
                     </p>
 
                     <p>
-                    <label>
-                    <input type="checkbox" name="extra" value="raton">
-                    Ratón
-                    </label>
+                        <label>
+                        <input type="checkbox" name="extra" value="raton">
+                        Ratón
+                        </label>
                     </p>
 
                     <p>
-                    <label>
-                    <input type="checkbox" name="extra" value="monitor">
-                    Monitor
-                    </label>
+                        <label>
+                        <input type="checkbox" name="extra" value="monitor">
+                        Monitor
+                        </label>
                     </p>
 
-                    </div>
+                </div>
 
+                <div id="notas_adicionales" style="display:none">
 
-                    <div id="comentarios" style="display:none">
-
-                    <h2 class="titulo_seccion">Comentarios</h2>
+                    <h2 class="titulo_seccion">NOTAS ADICIONALES</h2>
 
                     <p>
-                    <textarea name="notas" rows="4" cols="40"></textarea>
+                    <textarea name="notas" rows="4" cols="40" placeholder="Introduce aquí tus necesidades..."></textarea>
                     </p>
 
-                    </div>
+                </div>
 
+                <div class="botones">
 
-                    <div class="botones">
-
-                    <button type="button" class="boton_confirmar" onclick="enviar(event)">
+                    <button type="button" class="boton_confirmar" onclick="validar(event)">
                     Confirmar reserva
                     </button>
 

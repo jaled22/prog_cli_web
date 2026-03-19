@@ -22,20 +22,18 @@
 }
 
 #principal button{
-    background:#f8f9fa;
+    color:white;
     padding:10px 20px;
     margin:10px;
 }
 
 .boton_confirmar{
     background:#3498db;
-    color:white;
     border:none;
 }
 
 .boton_cancelar{
-    background:#95a5a6;
-    color:white;
+    background:red;
     border:none;
 }
 
