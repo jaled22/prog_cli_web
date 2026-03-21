@@ -1,6 +1,3 @@
-#principal{
-    padding: 6px;    
-}
 
 .titulo_seccion{
     background:#2c3e50;
@@ -25,18 +22,18 @@
     color:white;
     padding:10px 20px;
     margin:10px;
+    border:none;
 }
 
 .boton_confirmar{
     background:#3498db;
-    border:none;
 }
 
 .boton_cancelar{
-    background:red;
-    border:none;
+    background:#95a5a6;
 }
 
 .botones{
     text-align:center;
+    background-color: #f8f9fa;
 }

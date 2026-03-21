@@ -65,7 +65,7 @@
                     <p>
                         Departamento:
                         <select name="departamento">
-                            <option value="" selected disabled>Seleccione un departamento ▼</option>
+                            <option value="" selected disabled>Seleccione un departamento</option>
                             <option value="IT">IT</option>
                             <option value="RRHH">RRHH</option>
                             <option value="Marketing">Marketing</option>
@@ -88,7 +88,7 @@
                     <p>
                         Planta:
                         <select name="planta">
-                            <option value="" selected disabled>Seleccione una planta ▼</option>
+                            <option value="" selected disabled>Seleccione una planta</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -141,9 +141,10 @@
                     <button type="button" class="boton_confirmar" onclick="validar(event)">
                     Confirmar reserva
                     </button>
-
-                    <button type="reset" class="boton_cancelar">
-                    Cancelar
+                    
+                                                                <!-- limpiar el pie al resetear el formulario -->
+                    <button type="reset" class="boton_cancelar" onclick="document.getElementById('pie').innerHTML=''">
+                    Borrar datos
                     </button>
 
                 </div>
