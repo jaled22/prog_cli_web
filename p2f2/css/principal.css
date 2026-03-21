@@ -1,6 +1,6 @@
 
 .titulo_seccion{
-    background:#2c3e50;
+    background-color:#2c3e50;
     color:white;
     text-transform:uppercase;
     padding:12px;
@@ -26,7 +26,7 @@
 }
 
 .boton_confirmar{
-    background:#3498db;
+    background-color:#3498db;
 }
 
 .boton_cancelar{
