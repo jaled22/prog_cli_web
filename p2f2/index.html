@@ -5,7 +5,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Reserva de puestos</title>
     <link rel="stylesheet" type="text/css" href="/css/cabecera.css">
-    <link rel="stylesheet" type="text/css" href="/css/contenido.css">
     <link rel="stylesheet" type="text/css" href="/css/menu.css">
     <link rel="stylesheet" type="text/css" href="/css/pie.css">
     <link rel="stylesheet" type="text/css" href="/css/principal.css">
@@ -17,8 +16,8 @@
     <!-- Cabecera -->
     <div id="cabecera">
         <div id="texto_cabecera">
-            <p class="linea1">Gestión de Espacios y Logística</p>
-            <p class="linea2">Reserva de Puestos - Sede Central 2026</p>
+            <p>Gestión de Espacios y Logística</p>
+            <p>Reserva de Puestos - Sede Central 2026</p>
 
             <h1 class="universidad">
                 <span>U</span>niversidad 
@@ -29,128 +28,126 @@
         <img id="logo" src="https://cdn-icons-png.flaticon.com/512/3222/3222640.png" alt="Residential Building"> 
     </div>
 
-    <!-- Contenido -->
-    <div id="contenido">
-        <!-- Menu -->
-        <div id="menu">
-            <a href="#" onclick="cambiarCapas('datos_empleado')">
-                Identificación de usuario
-            </a>
+    <!-- Menu -->
+    <div id="menu">
+        <a href="#" onclick="cambiarCapas('datos_empleado')">
+            Identificación de usuario
+        </a>
 
-            <a href="#" onclick="cambiarCapas('reserva_puesto')">
-                Reserva de puesto
-            </a>
+        <a href="#" onclick="cambiarCapas('reserva_puesto')">
+            Reserva de puesto
+        </a>
 
-            <a href="#" onclick="cambiarCapas('equipamiento')">
-                Equipamiento
-            </a>
+        <a href="#" onclick="cambiarCapas('equipamiento')">
+            Equipamiento
+        </a>
 
-            <a href="#" onclick="cambiarCapas('notas_adicionales')">
-                Comentarios
-            </a>  
-        </div>
-
-        <!-- Principal -->
-        <div id="principal">
-            <form id="formulario-gestion" action="/reservar_puesto">
-                <div id="datos_empleado">
-
-                    <h2 class="titulo_seccion">IDENTIFICACIÓN DE USUARIO</h2>
-
-                    <p>
-                        Nombre del empleado:
-                        <input type="text" name="empleado">
-                        </p>
-
-                    <p>
-                        Departamento:
-                        <select name="departamento">
-                            <option value="" selected disabled>Seleccione un departamento</option>
-                            <option value="IT">IT</option>
-                            <option value="RRHH">RRHH</option>
-                            <option value="Marketing">Marketing</option>
-                        </select>
-                    </p>
-
-                </div>
-
-                <div id="reserva_puesto" style="display:none">
-
-                    <h2 class="titulo_seccion">CONFIGURACIÓN DEL PUESTO</h2>
-
-                    <p>
-                        Tipo de espacio:
-                        <label><input type="radio" name="tipo" value="escritorio"> Escritorio fijo</label>
-                        <label><input type="radio" name="tipo" value="despacho"> Despacho privado</label>
-                        <label><input type="radio" name="tipo" value="sala"> Sala de juntas</label>
-                    </p>
-
-                    <p>
-                        Planta:
-                        <select name="planta">
-                            <option value="" selected disabled>Seleccione una planta</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                        </select>
-                    </p>
-
-                </div>
-
-                <div id="equipamiento" style="display:none">
-
-                    <h2 class="titulo_seccion">PERIFÉRICOS REQUERIDOS</h2>
-
-                    <p>Marque lo que necesite del puesto:</p>
-
-                    <p>
-                        <label>
-                        <input type="checkbox" name="extra" value="teclado">
-                        Teclado
-                        </label>
-                    </p>
-
-                    <p>
-                        <label>
-                        <input type="checkbox" name="extra" value="raton">
-                        Ratón
-                        </label>
-                    </p>
-
-                    <p>
-                        <label>
-                        <input type="checkbox" name="extra" value="monitor">
-                        Monitor
-                        </label>
-                    </p>
-
-                </div>
-
-                <div id="notas_adicionales" style="display:none">
-
-                    <h2 class="titulo_seccion">NOTAS ADICIONALES</h2>
-
-                    <p>
-                    <textarea name="notas" rows="4" cols="40" placeholder="Introduce aquí tus necesidades..."></textarea>
-                    </p>
-
-                </div>
-
-                <div class="botones">
-
-                    <button type="button" class="boton_confirmar" onclick="validar(event)">
-                    Confirmar reserva
-                    </button>
-                    
-                                                                <!-- limpiar el pie al resetear el formulario -->
-                    <button type="reset" class="boton_cancelar" onclick="document.getElementById('pie').innerHTML=''">
-                    Borrar datos
-                    </button>
-
-                </div>
-            </form>
-        </div>
+        <a href="#" onclick="cambiarCapas('notas_adicionales')">
+            Comentarios
+        </a>  
     </div>
+
+    <!-- Principal -->
+    <div id="principal">
+        <form id="formulario-gestion" action="/reservar_puesto">
+            <div id="datos_empleado">
+
+                <h2 class="titulo_seccion">IDENTIFICACIÓN DE USUARIO</h2>
+
+                <p>
+                    Nombre del empleado:
+                    <input type="text" name="empleado">
+                </p>
+
+                <p>
+                    Departamento:
+                    <select name="departamento">
+                        <option value="" selected disabled>Seleccione un departamento</option>
+                        <option value="IT">IT</option>
+                        <option value="RRHH">RRHH</option>
+                        <option value="Marketing">Marketing</option>
+                    </select>
+                </p>
+
+            </div>
+
+            <div id="reserva_puesto" style="display:none">
+
+                <h2 class="titulo_seccion">CONFIGURACIÓN DEL PUESTO</h2>
+
+                <p>
+                    Tipo de espacio:
+                    <label><input type="radio" name="tipo" value="escritorio"> Escritorio fijo</label>
+                    <label><input type="radio" name="tipo" value="despacho"> Despacho privado</label>
+                    <label><input type="radio" name="tipo" value="sala"> Sala de juntas</label>
+                </p>
+
+                <p>
+                    Planta:
+                    <select name="planta">
+                        <option value="" selected disabled>Seleccione una planta</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </p>
+
+            </div>
+
+            <div id="equipamiento" style="display:none">
+
+                <h2 class="titulo_seccion">PERIFÉRICOS REQUERIDOS</h2>
+
+                <p>Marque lo que necesite del puesto:</p>
+
+                <p>
+                    <label>
+                    <input type="checkbox" name="extra" value="teclado">
+                    Teclado
+                    </label>
+                </p>
+
+                <p>
+                    <label>
+                    <input type="checkbox" name="extra" value="raton">
+                    Ratón
+                    </label>
+                </p>
+
+                <p>
+                    <label>
+                    <input type="checkbox" name="extra" value="monitor">
+                    Monitor
+                    </label>
+                </p>
+
+            </div>
+
+            <div id="notas_adicionales" style="display:none">
+
+                <h2 class="titulo_seccion">NOTAS ADICIONALES</h2>
+
+                <p>
+                <textarea name="notas" rows="4" cols="40" placeholder="Introduce aquí tus necesidades..."></textarea>
+                </p>
+
+            </div>
+
+            <div class="botones">
+
+                <button type="button" class="boton_confirmar" onclick="validar(event)">
+                Confirmar reserva
+                </button>
+                
+                                                            <!-- limpiar el pie al resetear el formulario -->
+                <button type="reset" class="boton_cancelar" onclick="document.getElementById('pie').innerHTML=''">
+                Borrar datos
+                </button>
+
+            </div>
+        </form>
+    </div>
+
 
     <!-- Pie -->
     <div id="pie">

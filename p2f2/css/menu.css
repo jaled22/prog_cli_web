@@ -1,3 +1,10 @@
+#menu{
+    width:15%;
+    padding:1%;
+    background-color: #ffffff;
+    float:left;
+}
+
 
 #menu a{
     display:block;

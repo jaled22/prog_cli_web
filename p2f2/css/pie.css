@@ -1,8 +1,7 @@
 #pie{
-    width:800px;
     background-color:#ffffff;
     color:black;
     text-align:center;
     padding:10px;
-    margin:0 auto;
+    clear: both;
 }
